@@ -57,7 +57,7 @@ Follow the installation steps and finish the installation in your virtual machin
 
 ###Step3
 
-On each VM now enable the default Administrator user (instructions: [http://technet.microsoft.com/en-us/library/dd744293%28v=ws.10%29.aspx](windows 7) and [http://www.ghacks.net/2012/06/11/windows-8-enable-the-hidden-administrator-account/](windows 8) ), add a password for it and then login as Administrator and delete all other local accounts and their files. Only the Administrator account should be present on the system.
+On each VM now enable the default Administrator user (instructions: [windows 7](http://technet.microsoft.com/en-us/library/dd744293%28v=ws.10%29.aspx) and [windows 8](http://www.ghacks.net/2012/06/11/windows-8-enable-the-hidden-administrator-account/) ), add a password for it and then login as Administrator and delete all other local accounts and their files. Only the Administrator account should be present on the system.
  
 ###Step 4
  
@@ -77,7 +77,7 @@ Add the following registry key to enable administrative shares via regedit.exe
     Data Type: REG_DWORD
     Value: 1
  
-[http://en.wikipedia.org/wiki/Administrative_share](Administrative shares)
+[Administrative shares](http://en.wikipedia.org/wiki/Administrative_share)
  
  
 ###Step 7
@@ -216,4 +216,4 @@ assuming that you want to make an iso from the installation files located in e.g
 
 ##License
 
-This work is licensed under a [http://creativecommons.org/licenses/by/3.0/deed.en_US](Creative Commons Attribution 3.0 Unported License)
+This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US)
