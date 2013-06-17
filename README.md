@@ -1,4 +1,4 @@
-#Automatic Windows Image Customization Project
+#Automatic Windows Image Customization
 
 The goal of the project is to automatically create customized .wim images of windows that will be deployed on other workstations.
 Those images will contain all the OS security updates as well as extra selected software. 
@@ -10,12 +10,12 @@ Previously a standard installation took ~120-130 minutes while an installation f
 
 ###Steps:
  
- - We create a new Virtual Machine with Windows 7 or 8 installed. This installation is not connected to the domain and it is based on the unchanged Microsoft ISO image. We avoid using an already sysprepped image because it's more likely to cause problems in the next stages of configuration.
- - Once the installation is ready we clone the VM, and keep the original one powered off for future use.
- - The VM will join the domain, update with the latest security patches and receive all the applications we distribute for a standard centrally managed machine
- - When the machine is up to date and complete, we prepare it for the generalization process (Sysprep).
- - We then reboot to the Windows Preinstallation Environment to capture the current VM installation without altering it!
- - Once it's done, we copy the resulting install.wim file to DFS and rename it properly. 
+ 1. We create a new Virtual Machine with Windows 7 or 8 installed. This installation is not connected to the domain and it is based on the unchanged Microsoft ISO image. We avoid using an already sysprepped image because it's more likely to cause problems in the next stages of configuration.
+ 2. Once the installation is ready we clone the VM, and keep the original one powered off for future use.
+ 3. The VM will join the domain, update with the latest security patches and receive all the applications we distribute for a standard centrally managed machine
+ 4. When the machine is up to date and complete, we prepare it for the generalization process (Sysprep).
+ 5. We then reboot to the Windows Preinstallation Environment to capture the current VM installation without altering it!
+ 6. Once it's done, we copy the resulting install.wim file to DFS and rename it properly. 
 
 ##Requirements
 
@@ -57,7 +57,7 @@ Follow the installation steps and finish the installation in your virtual machin
 
 ###Step3
 
-On each VM now enable the default Administrator user ( http://technet.microsoft.com/en-us/library/dd744293%28v=ws.10%29.aspx and http://www.ghacks.net/2012/06/11/windows-8-enable-the-hidden-administrator-account/ for windows 8 ), add a password for it and then login as Administrator and delete all other local accounts and their files. Only the Administrator account should be present on the system.
+On each VM now enable the default Administrator user (instructions: [http://technet.microsoft.com/en-us/library/dd744293%28v=ws.10%29.aspx](windows 7) and [http://www.ghacks.net/2012/06/11/windows-8-enable-the-hidden-administrator-account/](windows 8) ), add a password for it and then login as Administrator and delete all other local accounts and their files. Only the Administrator account should be present on the system.
  
 ###Step 4
  
@@ -186,19 +186,19 @@ Now you can use it in the VMs.
  
 The script will capture the image to \\YOURDFSSERVER\WindowsImageCustomization\install86(or64).wim and it should be about 6-8GB in size depending on the updates installed.
 
-*Note:
+*Note:*
  
- - If anything goes wrong during the process and the image creation fails you can easily restart by running the script again. 
+ 1. If anything goes wrong during the process and the image creation fails you can easily restart by running the script again. 
    It will automatically delete the previous copied VM and start over.
-- The above scripts require PsExec.exe, PsShutdown.exe AND CaptureWimImage.ps1 to be in the same directory in your machine as the PowerShell script to run properly.
-- If during the capturing the scripts get stuck during the PsExec phase and psexec seems too not respond you have to go to each VM and do the following steps:
+ 2. The above scripts require PsExec.exe, PsShutdown.exe AND CaptureWimImage.ps1 to be in the same directory in your machine as the PowerShell script to run properly.
+ 3. If during the capturing the scripts get stuck during the PsExec phase and psexec seems too not respond you have to go to each VM and do the following steps:
 
 To fix this issue you will need to:
 
- - Delete the c:\windows\psexesvc.exe file from the vm machine.
- - Launch Regedit
- - Navigate to the key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PSEXESVC
- - Modify the value of "ImagePath" to read "%SystemRoot%\PSEXESVC.EXE"
+ 1. Delete the c:\windows\psexesvc.exe file from the vm machine.
+ 2. Launch Regedit
+ 3. Navigate to the key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PSEXESVC
+ 4. Modify the value of "ImagePath" to read "%SystemRoot%\PSEXESVC.EXE"
 
 The next time you use psexec with this machine it should run fine.
 
@@ -212,7 +212,7 @@ To create an .iso for installations of any kind you simply run as an Administrat
 
 assuming that you want to make an iso from the installation files located in e.g. C:\WindowsInstallationFolder
 
-Note: If etfsboot.com is not located in \boot and it's located in the root directory of the installation files simply adjust the first directory in the parameters. 
+*Note: If etfsboot.com is not located in \boot and it's located in the root directory of the installation files simply adjust the first directory in the parameters.*
 
 ##License
 
